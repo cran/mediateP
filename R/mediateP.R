@@ -251,8 +251,8 @@ mediate_contY_binaM=function(data,
                              outcome="Y",
                              mediator="M",
                              exposure="X",
-                             covariateY=c("X1","X2","X3","X4","X5","X6","X7","X8"),
-                             covariateM=c("X1","X2","X3","X4","X5","X6","X7"),
+                             covariateY=c("X1","X2"),
+                             covariateM=c("X1","X2"),
                              x0=0,x1=1,cY=c(0,0),cM=c(0,0)) {
 
 
@@ -293,10 +293,10 @@ mediate_contY_binaM=function(data,
     names(cM) = paste(names(gamma),"_gammafix",sep="")[-c(1:2)]
     gamma_c=paste("gamma_",covariateM,sep="")
   }
-  .A = paste("exp(gamma0+gamma1*",x0,if(is.null(covariateM)==0) {
+  .A = paste("exp(gamma0+gamma1*",x1,if(is.null(covariateM)==0) {
     paste("+",paste(paste(gamma_c,"*",cM),collapse = "+"))}
     ,")")
-  .B= paste("exp(beta2+gamma0+gamma1*",x1,if(is.null(covariateM)==0) {
+  .B= paste("exp(gamma0+gamma1*",x0,if(is.null(covariateM)==0) {
     paste("+",paste(paste(gamma_c,"*",cM),collapse = "+"))}
     ,")")
 
@@ -422,10 +422,10 @@ Mediate_contY_binaM_bootci=function(data,
       names(cM) = paste(names(gamma),"_gammafix",sep="")[-c(1:2)]
       gamma_c=paste("gamma_",covariateM,sep="")
     }
-    .A = paste("exp(gamma0+gamma1*",x0,if(is.null(covariateM)==0) {
+    .A = paste("exp(gamma0+gamma1*",x1,if(is.null(covariateM)==0) {
       paste("+",paste(paste(gamma_c,"*",cM),collapse = "+"))}
       ,")")
-    .B= paste("exp(beta2+gamma0+gamma1*",x1,if(is.null(covariateM)==0) {
+    .B= paste("exp(gamma0+gamma1*",x0,if(is.null(covariateM)==0) {
       paste("+",paste(paste(gamma_c,"*",cM),collapse = "+"))}
       ,")")
 
@@ -506,8 +506,8 @@ mediate_binaY_contM=function(data,
                              outcome="Y",
                              mediator="M",
                              exposure="X",
-                             covariateY=c("X1","X2","X3","X4","X5","X6","X7","X8"),
-                             covariateM=c("X1","X2","X3","X4","X5","X6","X7"),
+                             covariateY=c("X1","X2"),
+                             covariateM=c("X1","X2"),
                              x0=0,x1=1,cY=c(0,0),cM=c(0,0)) {
 
   data = as.data.frame(data)
@@ -1543,9 +1543,8 @@ print.mediate=function(x, ...) {
   if (iscontY==1) {
     rownames(out)=c("NIE:  ","TE:   ","MP:   ")
   } else {
-    rownames(out)=c("NIE: Approximate  ","NIE:       Exact  ",
-                    "TE:  Approximate  ","TE:        Exact  ",
-                    "MP:  Approximate  ","MP:        Exact  ")
+    rownames(out)=c("NIE: Approximate  ","TE:  Approximate  ","MP:  Approximate  ",
+                    "NIE:       Exact  ","TE:        Exact  ","MP:        Exact  ")
   }
   for (i in (1:num.row)) {
     out[i,1]=paste(res[1,i]," (",res[2,i],")",sep="")
@@ -1557,5 +1556,3 @@ print.mediate=function(x, ...) {
   cat(paste("Mediation Analysis Results\n"))
   print.data.frame(out)
 }
-
-

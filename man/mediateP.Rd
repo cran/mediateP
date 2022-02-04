@@ -36,10 +36,10 @@ A list presents the mediation analysis results, which includes two components. T
 }
 
 \author{
-Chao Cheng (c.cheng@yale.edu)
+Chao Cheng (c.cheng@yale.edu), Donna Spiegelman, Fan Li
 }
 
-\references{Chao Cheng, Donna Spiegelman, and Fan Li. (2020+) An evaluation of the product method for estimation and inference in mediation analysis. Submitted to Epidemiologic Methods. Manuscript is available at <https://github.com/chaochengstat/chaochengstat.github.io/blob/master/manuscript_Epidemiologic_Methods.pdf>.}
+\references{Cheng C, Spiegelman D, Li F. Estimating the natural indirect effect and the mediation proportion via the product method. BMC medical research methodology. 2021 Dec;21(1):1-20.}
 
 \examples{
 ## Generate a data set including two confounders (C1 and C2), one binary
